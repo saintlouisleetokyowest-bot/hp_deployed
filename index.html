@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Lab - 让AI更懂你</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title data-i18n="page.title">AI Lab - Making AI Understand You Better</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +19,19 @@
             background: #fafafa;
             color: #1a1a1a;
             overflow-x: hidden;
+        }
+
+        /* 语言特定的字体样式 */
+        html[lang="ja"] body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', Arial, sans-serif;
+        }
+
+        html[lang="en"] body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Arial, sans-serif;
+        }
+
+        html[lang="zh-CN"] body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans SC', Arial, sans-serif;
         }
 
         /* Navigation */
@@ -31,6 +47,12 @@
             background: rgba(250, 250, 250, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
         }
 
         .logo {
@@ -67,6 +89,35 @@
 
         .nav-links a:hover {
             color: #2d5f8d;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            border: 1px solid #e8e8e8;
+            background: #fff;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .lang-btn:hover {
+            border-color: #2d5f8d;
+            color: #2d5f8d;
+        }
+
+        .lang-btn.active {
+            background: #2d5f8d;
+            color: #fff;
+            border-color: #2d5f8d;
         }
 
         /* Hero Section */
@@ -150,6 +201,7 @@
         .hero-text .highlight {
             background: linear-gradient(135deg, #2d5f8d 0%, #5b8bb5 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -367,10 +419,9 @@
         }
 
         .stat-item h3 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #2d5f8d;
-            margin-bottom: 8px;
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #1a1a1a;
         }
 
         .stat-item p {
@@ -416,15 +467,14 @@
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
+            text-align: center;
             margin-bottom: 40px;
         }
 
         .footer-brand {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
             gap: 12px;
             font-size: 24px;
             font-weight: 700;
@@ -436,27 +486,15 @@
             font-size: 32px;
         }
 
-        .footer-column h4 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
 
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column a {
+        .footer-privacy-link {
             color: #999;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 14px;
         }
 
-        .footer-column a:hover {
+        .footer-privacy-link:hover {
             color: #fff;
         }
 
@@ -480,9 +518,6 @@
                 justify-content: center;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         @media (max-width: 768px) {
@@ -498,13 +533,17 @@
                 display: none;
             }
 
+            .language-switcher {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
             .section-title {
                 font-size: 36px;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -512,14 +551,18 @@
     <nav>
         <div class="logo">
             <span class="logo-icon">🦊</span>
-            <span>AI Lab</span>
+            <span data-i18n="nav.brand">AI Lab</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#features">产品</a></li>
-            <li><a href="#solutions">解决方案</a></li>
-            <li><a href="#about">关于我们</a></li>
-            <li><a href="#contact">联系</a></li>
+            <li><a href="#features" data-i18n="nav.features">解决方案</a></li>
+            <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
         </ul>
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="zh-CN">中文</button>
+        </div>
     </nav>
 
     <section class="hero">
@@ -530,11 +573,11 @@
         </div>
         <div class="hero-content">
             <div class="hero-text">
-                <h1>让<span class="highlight">AI</span>成为<br>你的智能伙伴</h1>
-                <p>我们致力于打造易用、可靠的人工智能解决方案，帮助企业和开发者轻松实现AI赋能。</p>
+                <h1 data-i18n="hero.title">让<span class="highlight">AI</span>成为<br>你的智能伙伴</h1>
+                <p data-i18n="hero.subtitle">我们致力于打造易用、可靠的人工智能解决方案，帮助企业和开发者轻松实现AI赋能。</p>
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">立即开始</a>
-                    <a href="#features" class="btn btn-secondary">探索功能</a>
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.cta.primary">立即开始</a>
+                    <a href="#features" class="btn btn-secondary" data-i18n="hero.cta.secondary">探索功能</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -550,74 +593,74 @@
     </section>
 
     <section class="features" id="features">
-        <h2 class="section-title">强大而友好的AI能力</h2>
-        <p class="section-subtitle">为各种场景提供灵活的AI解决方案</p>
+        <h2 class="section-title" data-i18n="features.title">强大而友好的AI能力</h2>
+        <p class="section-subtitle" data-i18n="features.subtitle">为各种场景提供灵活的AI解决方案</p>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
-                <h3>智能对话</h3>
-                <p>基于最新大语言模型，打造自然流畅的对话体验，让AI真正理解用户需求。</p>
+                <h3 data-i18n="feature.chat.title">智能对话</h3>
+                <p data-i18n="feature.chat.desc">基于最新大语言模型，打造自然流畅的对话体验，让AI真正理解用户需求。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎨</div>
-                <h3>创意生成</h3>
-                <p>从文本到图像，从代码到设计，AI助力创意工作，释放无限可能。</p>
+                <h3 data-i18n="feature.creative.title">创意生成</h3>
+                <p data-i18n="feature.creative.desc">从文本到图像，从代码到设计，AI助力创意工作，释放无限可能。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
-                <h3>数据洞察</h3>
-                <p>智能分析海量数据，发现隐藏价值，为决策提供有力支持。</p>
+                <h3 data-i18n="feature.analytics.title">数据洞察</h3>
+                <p data-i18n="feature.analytics.desc">智能分析海量数据，发现隐藏价值，为决策提供有力支持。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔧</div>
-                <h3>定制开发</h3>
-                <p>灵活的API接口和SDK，快速集成到你的应用中，无缝衔接业务流程。</p>
+                <h3 data-i18n="feature.development.title">定制开发</h3>
+                <p data-i18n="feature.development.desc">灵活的API接口和SDK，快速集成到你的应用中，无缝衔接业务流程。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
-                <h3>安全可信</h3>
-                <p>企业级安全标准，数据加密传输，让你放心使用AI服务。</p>
+                <h3 data-i18n="feature.security.title">安全可信</h3>
+                <p data-i18n="feature.security.desc">企业级安全标准，数据加密传输，让你放心使用AI服务。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌍</div>
-                <h3>多语言支持</h3>
-                <p>支持全球主流语言，让AI跨越语言障碍，服务全球用户。</p>
+                <h3 data-i18n="feature.multilingual.title">多语言支持</h3>
+                <p data-i18n="feature.multilingual.desc">支持全球主流语言，让AI跨越语言障碍，服务全球用户。</p>
             </div>
         </div>
     </section>
 
-    <section class="stats">
+    <section class="stats" id="about">
         <div class="stats-container">
-            <h2>值得信赖的AI伙伴</h2>
+            <h2 data-i18n="about.title">关于我们</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-icon">🏢</div>
-                    <h3>1000+</h3>
-                    <p>企业客户</p>
+                    <div class="stat-icon">🎯</div>
+                    <h3 data-i18n="about.mission.title">让AI更懂你</h3>
+                    <p data-i18n="about.mission">让AI更懂你，让创新更简单</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">⚡</div>
-                    <h3>99.9%</h3>
-                    <p>服务可用性</p>
+                    <div class="stat-icon">🔮</div>
+                    <h3 data-i18n="about.vision.title">创新驱动</h3>
+                    <p data-i18n="about.vision">以前沿技术和用户为中心的设计驱动发展</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">🚀</div>
-                    <h3>10亿+</h3>
-                    <p>API调用次数</p>
+                    <div class="stat-icon">🤝</div>
+                    <h3 data-i18n="about.values.title">合作共赢</h3>
+                    <p data-i18n="about.values">为共同成长和成功构建持久伙伴关系</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">❤️</div>
-                    <h3>95%</h3>
-                    <p>客户满意度</p>
+                    <div class="stat-icon">👥</div>
+                    <h3 data-i18n="about.team.title">专业团队</h3>
+                    <p data-i18n="about.team">充满激情的AI专家和工程师团队</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="cta-section" id="contact">
-        <h2>准备好开启AI之旅了吗？</h2>
-        <p>立即加入，体验下一代人工智能服务</p>
-        <a href="mailto:hello@ailab.com" class="btn btn-primary">联系我们</a>
+        <h2 data-i18n="cta.title">准备好开启AI之旅了吗？</h2>
+        <p data-i18n="cta.subtitle">立即加入，体验下一代人工智能服务</p>
+        <a href="mailto:hello@ailab.com" class="btn btn-primary" data-i18n="cta.button">联系我们</a>
     </section>
 
     <footer>
@@ -627,42 +670,184 @@
                     <span class="footer-brand-icon">🦊</span>
                     <span>AI Lab</span>
                 </div>
-                <p>让AI更懂你，让创新更简单</p>
-            </div>
-            <div class="footer-column">
-                <h4>产品</h4>
-                <ul>
-                    <li><a href="#">对话API</a></li>
-                    <li><a href="#">图像生成</a></li>
-                    <li><a href="#">数据分析</a></li>
-                    <li><a href="#">定价方案</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>资源</h4>
-                <ul>
-                    <li><a href="#">开发文档</a></li>
-                    <li><a href="#">API参考</a></li>
-                    <li><a href="#">使用案例</a></li>
-                    <li><a href="#">博客</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>公司</h4>
-                <ul>
-                    <li><a href="#">关于我们</a></li>
-                    <li><a href="#">加入我们</a></li>
-                    <li><a href="#">联系方式</a></li>
-                    <li><a href="#">隐私政策</a></li>
-                </ul>
+                <p data-i18n="about.mission">AIがあなたをより理解し、イノベーションをよりシンプルに</p>
+                <a href="#" class="footer-privacy-link" data-i18n="footer.privacy">プライバシーポリシー</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 AI Lab. 用心打造，让AI更美好 🦊</p>
+            <p>&copy; 2024 AI Lab. <span data-i18n="footer.copyright">用心打造，让AI更美好 🦊</span></p>
         </div>
     </footer>
 
     <script>
+        // 多语言翻译数据
+        const translations = {
+            'zh-CN': {
+                'page.title': 'AI Lab - 让AI更懂你',
+                'page_icon':'🦊',
+                'nav.brand': 'AI Lab',
+                'nav.features': '解决方案',
+                'nav.about': '关于我们',
+                'nav.contact': '联系',
+                'hero.title': '让<span class="highlight">AI</span>成为<br>你的智能伙伴',
+                'hero.subtitle': '我们致力于打造易用、可靠的人工智能解决方案，帮助企业和开发者轻松实现AI赋能。',
+                'hero.cta.primary': '立即开始',
+                'hero.cta.secondary': '探索产品',
+                'features.title': '强大而友好的AI能力',
+                'features.subtitle': '为各种场景提供灵活的AI解决方案',
+                'feature.chat.title': '智能对话',
+                'feature.chat.desc': '基于最新大语言模型，打造自然流畅的对话体验，让AI真正理解用户需求。',
+                'feature.creative.title': '创意生成',
+                'feature.creative.desc': '从文本到图像，从代码到设计，AI助力创意工作，释放无限可能。',
+                'feature.analytics.title': '数据洞察',
+                'feature.analytics.desc': '智能分析海量数据，发现隐藏价值，为决策提供有力支持。',
+                'feature.development.title': '定制开发',
+                'feature.development.desc': '灵活的API接口和SDK，快速集成到你的应用中，无缝衔接业务流程。',
+                'feature.security.title': '安全可信',
+                'feature.security.desc': '企业级安全标准，数据加密传输，让你放心使用AI服务。',
+                'feature.multilingual.title': '多语言支持',
+                'feature.multilingual.desc': '支持全球主流语言，让AI跨越语言障碍，服务全球用户。',
+                'about.title': '关于我们',
+                'about.mission.title': '让AI更懂你',
+                'about.mission': '让AI更懂你，让创新更简单',
+                'about.vision.title': '创新驱动',
+                'about.vision': '以前沿技术和用户为中心的设计驱动发展',
+                'about.values.title': '合作共赢',
+                'about.values': '为共同成长和成功构建持久伙伴关系',
+                'about.team.title': '专业团队',
+                'about.team': '充满激情的AI专家和工程师团队',
+                'cta.title': '准备好开启AI之旅了吗？',
+                'cta.subtitle': '立即加入，体验下一代人工智能服务',
+                'cta.button': '联系我们',
+                'footer.privacy': '隐私政策'
+            },
+            'en': {
+                'page.title': 'AI Lab - Making AI Understand You Better',
+                'page_icon':'🦊',
+                'nav.brand': 'AI Lab',
+                'nav.features': 'Solutions',
+                'nav.about': 'About',
+                'nav.contact': 'Contact',
+                'hero.title': 'Let <span class="highlight">AI</span> Be<br>Your Smart Partner',
+                'hero.subtitle': 'We build user-friendly, trustworthy AI solutions that make AI adoption simple for businesses and developers.',
+                'hero.cta.primary': 'Get Started',
+                'hero.cta.secondary': 'Explore Solutions',
+                'features.title': 'Powerful and User-Friendly AI Solutions',
+                'features.subtitle': 'Providing flexible AI solutions for various scenarios',
+                'feature.chat.title': 'Intelligent Conversation',
+                'feature.chat.desc': 'Based on the latest large language models, creating natural and smooth conversation experiences, letting AI truly understand user needs.',
+                'feature.creative.title': 'Creative Generation',
+                'feature.creative.desc': 'From text to images, from code to design, AI assists creative work and releases unlimited possibilities.',
+                'feature.analytics.title': 'Data Insights',
+                'feature.analytics.desc': 'Intelligently analyze massive data, discover hidden value, and provide strong support for decision-making.',
+                'feature.development.title': 'Custom Development',
+                'feature.development.desc': 'Flexible API interfaces and SDKs for quick integration into your applications and seamless business process connections.',
+                'feature.security.title': 'Secure and Reliable',
+                'feature.security.desc': 'Enterprise-level security standards with encrypted data transmission, letting you use AI services with peace of mind.',
+                'feature.multilingual.title': 'Multilingual Support',
+                'feature.multilingual.desc': 'Support for major global languages, allowing AI to cross language barriers and serve global users.',
+                'about.title': 'About Us',
+                'about.mission.title': 'Making AI Understand You',
+                'about.mission': 'Making AI understand you better, making innovation simpler',
+                'about.vision.title': 'Innovation Driven',
+                'about.vision': 'Driven by cutting-edge technology and user-centric design',
+                'about.values.title': 'Win-Win Cooperation',
+                'about.values': 'Building lasting partnerships for mutual growth and success',
+                'about.team.title': 'Expert Team',
+                'about.team': 'A passionate team of AI experts and engineers',
+                'cta.title': 'Ready to Start Your AI Journey?',
+                'cta.subtitle': 'Join now and experience next-generation AI services',
+                'cta.button': 'Contact Us',
+                'footer.privacy': 'Privacy Policy'
+            },
+            'ja': {
+                'page.title': 'AI Lab - AIがあなたをより理解するように',
+                'page_icon':'🦊',
+                'nav.brand': 'AI Lab',
+                'nav.features': 'ソリューション',
+                'nav.about': 'ミッション',
+                'nav.contact': 'お問い合わせ',
+                'hero.title': '<span class="highlight">AI</span>をあなたの<br>賢いパートナーに',
+                'hero.subtitle': '私たちは、直感的で信頼できるAIソリューションを創出し、企業や開発者がAIの可能性を自然にビジネスへ取り込めるよう支援します。',
+                'hero.cta.primary': '今すぐ始める',
+                'hero.cta.secondary': '提案を見る',
+                'features.title': '強力で使いやすいAI機能',
+                'features.subtitle': 'さまざまなシナリオに柔軟なAIソリューションを提供',
+                'feature.chat.title': 'インテリジェント会話',
+                'feature.chat.desc': '最新の大規模言語モデルに基づき、自然で流暢な会話体験を作成し、AIがユーザーのニーズを本当に理解できるようにします。',
+                'feature.creative.title': 'クリエイティブ生成',
+                'feature.creative.desc': 'テキストから画像へ、コードからデザインへ、AIがクリエイティブワークを支援し、無限の可能性を解放します。',
+                'feature.analytics.title': 'データインサイト',
+                'feature.analytics.desc': '大量のデータをインテリジェントに分析し、隠れた価値を発見し、意思決定に強力なサポートを提供します。',
+                'feature.development.title': 'カスタム開発',
+                'feature.development.desc': '柔軟なAPIインターフェースとSDKで、アプリケーションに迅速に統合し、ビジネスプロセスをシームレスに接続します。',
+                'feature.security.title': '安全で信頼できる',
+                'feature.security.desc': 'エンタープライズレベルのセキュリティ基準でデータを暗号化送信し、安心してAIサービスをご利用いただけます。',
+                'feature.multilingual.title': '多言語サポート',
+                'feature.multilingual.desc': '世界主要言語をサポートし、AIが言語の壁を越えてグローバルユーザーに対応します。',
+                'about.title': 'ミッション',
+                'about.mission.title': 'AIがあなたを理解する',
+                'about.mission': 'AIがあなたをより理解し、イノベーションをよりシンプルに',
+                'about.vision.title': 'イノベーション主導',
+                'about.vision': '最先端技術とユーザー中心のデザインによって推進される',
+                'about.values.title': 'ウィンウィンの協業',
+                'about.values': '相互の成長と成功のための持続的なパートナーシップを構築',
+                'about.team.title': 'プロフェッショナルチーム',
+                'about.team': '情熱的なAI専門家とエンジニアのチーム',
+                'cta.title': 'AIの旅を始める準備はできましたか？',
+                'cta.subtitle': '今すぐ参加して、次世代AIサービスを体験してください',
+                'cta.button': 'お問い合わせ',
+                'footer.privacy': 'プライバシーポリシー'
+            }
+        };
+
+        // 语言切换功能
+        let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = lang;
+
+            // 更新页面标题
+            document.title = translations[lang]['page_icon'] + ' ' + translations[lang]['page.title'];
+
+            // 更新所有带有data-i18n属性的元素
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage(currentLang);
+
+            // 添加语言按钮事件监听器
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+        });
+
 // #region agent log
 fetch('http://127.0.0.1:7244/ingest/dcbea439-81a5-40be-b50e-a3b4ace6260d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ai_startup_landing.html:666',message:'Page load started',data:{userAgent:navigator.userAgent,screenWidth:window.screen.width,windowWidth:window.innerWidth,isTouch:'ontouchstart' in window},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});;
 // #endregion
