@@ -203,15 +203,16 @@
 
         /* Footer */
         footer {
-            padding: 40px 5%;
+            padding: 60px 5% 40px;
             background: #1a1a1a;
             color: #999;
-            text-align: center;
         }
 
         .footer-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .footer-brand {
@@ -242,7 +243,7 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 40px;
             border-top: 1px solid #333;
         }
 
@@ -627,9 +628,11 @@
         // Update favicon
         function updateFavicon(emoji) {
             const favicon = document.getElementById('favicon');
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><text y="24" font-size="24" font-family="Arial, sans-serif">${emoji}</text></svg>`;
-            const encodedSvg = btoa(svg);
-            favicon.href = `data:image/svg+xml;base64,${encodedSvg}`;
+            // Use TextEncoder to handle Unicode characters properly
+            const encoder = new TextEncoder();
+            const data = encoder.encode(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><text y="24" font-size="24" font-family="Arial, sans-serif">${emoji}</text></svg>`);
+            const base64 = btoa(String.fromCharCode(...data));
+            favicon.href = `data:image/svg+xml;base64,${base64}`;
         }
 
         // 语言切换功能
@@ -652,6 +655,18 @@
                 console.error('Title translation missing for:', lang);
             }
 
+            // 更新所有带有data-i18n属性的元素
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (privacyTranslations[lang] && privacyTranslations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = privacyTranslations[lang][key];
+                    } else {
+                        element.innerHTML = privacyTranslations[lang][key];
+                    }
+                }
+            });
+
             // 更新语言按钮状态
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -664,20 +679,14 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Privacy page DOM loaded');
-            console.log('Current language from storage:', currentLang);
-
             updateFavicon('🦊');
             switchLanguage(currentLang);
 
             // 添加语言按钮事件监听器
             const buttons = document.querySelectorAll('.lang-btn');
-            console.log('Found buttons:', buttons.length);
-
             buttons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const lang = this.getAttribute('data-lang');
-                    console.log('Button clicked, language:', lang);
                     switchLanguage(lang);
                 });
             });
