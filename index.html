@@ -6,7 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title data-i18n="page.title">AI Lab - Making AI Understand You Better</title>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="">
+    <title data-i18n="page.title">Arvione AI - Making AI Understand You Better</title>
     <style>
         * {
             margin: 0;
@@ -62,6 +63,12 @@
             font-size: 24px;
             font-weight: 700;
             color: #2d5f8d;
+            text-decoration: none !important;
+        }
+
+        .logo:hover {
+            color: #2d5f8d;
+            text-decoration: none !important;
         }
 
         .logo-icon {
@@ -549,14 +556,14 @@
 </head>
 <body>
     <nav>
-        <div class="logo">
+        <a href="#" class="logo">
             <span class="logo-icon">🦊</span>
-            <span data-i18n="nav.brand">AI Lab</span>
-        </div>
+            <span data-i18n="nav.brand">Arvione AI</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#features" data-i18n="nav.features">解决方案</a></li>
-            <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
-            <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
+            <li><a href="#about" data-i18n="nav.about">创新理念</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">联系我们</a></li>
         </ul>
         <div class="language-switcher">
             <button class="lang-btn active" data-lang="en">EN</button>
@@ -585,7 +592,7 @@
                     <div class="mascot">🦊</div>
                     <div class="floating-icon icon1">✨</div>
                     <div class="floating-icon icon2">🚀</div>
-                    <div class="floating-icon icon3">💡</div>
+                    <a class="floating-icon icon3" href="fruit_ninja.html" style="text-decoration: none;">💡</a>
                     <div class="floating-icon icon4">⚡</div>
                 </div>
             </div>
@@ -631,7 +638,7 @@
 
     <section class="stats" id="about">
         <div class="stats-container">
-            <h2 data-i18n="about.title">关于我们</h2>
+            <h2 data-i18n="about.title">创新理念</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-icon">🎯</div>
@@ -660,7 +667,7 @@
     <section class="cta-section" id="contact">
         <h2 data-i18n="cta.title">准备好开启AI之旅了吗？</h2>
         <p data-i18n="cta.subtitle">立即加入，体验下一代人工智能服务</p>
-        <a href="mailto:hello@ailab.com" class="btn btn-primary" data-i18n="cta.button">联系我们</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.button">联系我们</a>
     </section>
 
     <footer>
@@ -668,14 +675,14 @@
             <div>
                 <div class="footer-brand">
                     <span class="footer-brand-icon">🦊</span>
-                    <span>AI Lab</span>
+                    <span>Arvione AI</span>
                 </div>
                 <p data-i18n="about.mission">AIがあなたをより理解し、イノベーションをよりシンプルに</p>
                 <a href="privacy.html" class="footer-privacy-link" data-i18n="footer.privacy">プライバシーポリシー</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 AI Lab. <span data-i18n="footer.copyright">用心打造，让AI更美好 🦊</span></p>
+            <p>&copy; 2024 Arvione AI. <span data-i18n="footer.copyright">用心打造，让AI更美好 🦊</span></p>
         </div>
     </footer>
 
@@ -683,12 +690,12 @@
         // 多语言翻译数据
         const translations = {
             'zh-CN': {
-                'page.title': 'AI Lab - 让AI更懂你',
+                'page.title': 'Arvione AI - 让AI更懂你',
                 'page_icon':'🦊',
-                'nav.brand': 'AI Lab',
+                'nav.brand': 'Arvione AI',
                 'nav.features': '解决方案',
-                'nav.about': '关于我们',
-                'nav.contact': '联系',
+                'nav.about': '创新理念',
+                'nav.contact': '联系我们',
                 'hero.title': '让<span class="highlight">AI</span>成为<br>你的智能伙伴',
                 'hero.subtitle': '我们致力于打造易用、可靠的人工智能解决方案，帮助企业和开发者轻松实现AI赋能。',
                 'hero.cta.primary': '立即开始',
@@ -707,7 +714,7 @@
                 'feature.security.desc': '企业级安全标准，数据加密传输，让你放心使用AI服务。',
                 'feature.multilingual.title': '多语言支持',
                 'feature.multilingual.desc': '支持全球主流语言，让AI跨越语言障碍，服务全球用户。',
-                'about.title': '关于我们',
+                'about.title': '创新理念',
                 'about.mission.title': '让AI更懂你',
                 'about.mission': '让AI更懂你，让创新更简单',
                 'about.vision.title': '创新驱动',
@@ -723,11 +730,11 @@
                 'footer.copyright': '用心打造，让AI更美好'
             },
             'en': {
-                'page.title': 'AI Lab - Making AI Understand You Better',
+                'page.title': 'Arvione AI - Making AI Understand You Better',
                 'page_icon':'🦊',
-                'nav.brand': 'AI Lab',
+                'nav.brand': 'Arvione AI',
                 'nav.features': 'Solutions',
-                'nav.about': 'About',
+                'nav.about': 'Our Mission',
                 'nav.contact': 'Contact',
                 'hero.title': 'Let <span class="highlight">AI</span> Be<br>Your Smart Partner',
                 'hero.subtitle': 'We build user-friendly, trustworthy AI solutions that make AI adoption simple for businesses and developers.',
@@ -747,7 +754,7 @@
                 'feature.security.desc': 'Enterprise-level security standards with encrypted data transmission, letting you use AI services with peace of mind.',
                 'feature.multilingual.title': 'Multilingual Support',
                 'feature.multilingual.desc': 'Support for major global languages, allowing AI to cross language barriers and serve global users.',
-                'about.title': 'About Us',
+                'about.title': 'Our Mission',
                 'about.mission.title': 'Making AI Understand You',
                 'about.mission': 'Making AI understand you better, making innovation simpler',
                 'about.vision.title': 'Innovation Driven',
@@ -758,14 +765,14 @@
                 'about.team': 'A passionate team of AI experts and engineers',
                 'cta.title': 'Ready to Start Your AI Journey?',
                 'cta.subtitle': 'Join now and experience next-generation AI services',
-                'cta.button': 'Contact Us',
+                'cta.button': 'Request Demo',
                 'footer.privacy': 'Privacy Policy',
                 'footer.copyright': 'Carefully crafted, making AI better'
             },
             'ja': {
-                'page.title': 'AI Lab - AIがあなたをより理解するように',
+                'page.title': 'Arvione AI - AIがあなたをより理解するように',
                 'page_icon':'🦊',
-                'nav.brand': 'AI Lab',
+                'nav.brand': 'Arvione AI',
                 'nav.features': 'ソリューション',
                 'nav.about': 'ミッション',
                 'nav.contact': 'お問い合わせ',
@@ -804,6 +811,16 @@
             }
         };
 
+        // Update favicon
+        function updateFavicon(emoji) {
+            const favicon = document.getElementById('favicon');
+            // Use TextEncoder to handle Unicode characters properly
+            const encoder = new TextEncoder();
+            const data = encoder.encode(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><text y="24" font-size="24" font-family="Arial, sans-serif">${emoji}</text></svg>`);
+            const base64 = btoa(String.fromCharCode(...data));
+            favicon.href = `data:image/svg+xml;base64,${base64}`;
+        }
+
         // 语言切换功能
         let currentLang = localStorage.getItem('selectedLanguage') || 'en';
 
@@ -840,6 +857,7 @@
 
         // 初始化语言
         document.addEventListener('DOMContentLoaded', function() {
+            updateFavicon('🦊');
             switchLanguage(currentLang);
 
             // 添加语言按钮事件监听器

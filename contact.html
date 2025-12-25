@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/svg+xml" href="">
+    <title data-i18n="contact.page.title">Contact Us - Arvione AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* 语言特定的字体样式 */
+        html[lang="ja"] body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', Arial, sans-serif;
+        }
+
+        html[lang="en"] body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Arial, sans-serif;
+        }
+
+        html[lang="zh-CN"] body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans SC', Arial, sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d5f8d;
+            text-decoration: none !important;
+        }
+
+        .logo:hover {
+            color: #2d5f8d;
+            text-decoration: none !important;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2d5f8d;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            border: 1px solid #e8e8e8;
+            background: #fff;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .lang-btn:hover {
+            border-color: #2d5f8d;
+            color: #2d5f8d;
+        }
+
+        .lang-btn.active {
+            background: #2d5f8d;
+            color: #fff;
+            border-color: #2d5f8d;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 5%;
+            padding-bottom: 80px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .contact-header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-form-section {
+            background: #fff;
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2d5f8d;
+            box-shadow: 0 0 0 3px rgba(45, 95, 141, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f5f9fc 0%, #fef4f0 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            color: #2d5f8d;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #2d5f8d;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 5% 40px;
+            background: #1a1a1a;
+            color: #999;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-icon {
+            font-size: 32px;
+        }
+
+        .footer-privacy-link {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-privacy-link:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5f8d 0%, #5b8bb5 100%);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(45, 95, 141, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 95, 141, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 36px;
+            }
+
+            .contact-form-section {
+                padding: 40px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .language-switcher {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+
+            .lang-btn {
+                position: relative;
+                z-index: 11;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-icon">🦊</span>
+            <span data-i18n="nav.brand">Arvione AI</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#features" data-i18n="nav.features">Solutions</a></li>
+            <li><a href="index.html#about" data-i18n="nav.about">Our Mission</a></li>
+            <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="zh-CN">中文</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="contact-header">
+            <h1 data-i18n="contact.title">Contact Us</h1>
+            <p data-i18n="contact.subtitle">Ready to start your AI journey? Get in touch with our team and discover how we can help transform your business.</p>
+        </header>
+
+        <section class="contact-form-section">
+            <div class="success-message" id="successMessage" data-i18n="contact.success">
+                Thank you for your message! We'll get back to you within 24 hours.
+            </div>
+
+            <div class="error-message" id="errorMessage" data-i18n="contact.error">
+                There was an error sending your message. Please try again or contact us directly.
+            </div>
+
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" data-i18n="contact.firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" data-i18n="contact.lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" data-i18n="contact.email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="contact.phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company" data-i18n="contact.company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle" data-i18n="contact.jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" name="jobTitle">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry" data-i18n="contact.industry">Industry</label>
+                    <select id="industry" name="industry">
+                        <option value="" data-i18n="contact.selectIndustry">Select Industry</option>
+                        <option value="technology" data-i18n="contact.industry.tech">Technology</option>
+                        <option value="healthcare" data-i18n="contact.industry.healthcare">Healthcare</option>
+                        <option value="finance" data-i18n="contact.industry.finance">Finance</option>
+                        <option value="education" data-i18n="contact.industry.education">Education</option>
+                        <option value="retail" data-i18n="contact.industry.retail">Retail</option>
+                        <option value="manufacturing" data-i18n="contact.industry.manufacturing">Manufacturing</option>
+                        <option value="other" data-i18n="contact.industry.other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interest" data-i18n="contact.interest">I'm interested in</label>
+                    <select id="interest" name="interest">
+                        <option value="" data-i18n="contact.selectInterest">Select Interest</option>
+                        <option value="consultation" data-i18n="contact.interest.consultation">AI Consultation</option>
+                        <option value="development" data-i18n="contact.interest.development">Custom AI Development</option>
+                        <option value="integration" data-i18n="contact.interest.integration">AI Integration Services</option>
+                        <option value="training" data-i18n="contact.interest.training">AI Training Programs</option>
+                        <option value="partnership" data-i18n="contact.interest.partnership">Partnership Opportunities</option>
+                        <option value="demo" data-i18n="contact.interest.demo">Product Demo</option>
+                        <option value="other" data-i18n="contact.interest.other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-i18n="contact.message">Message *</label>
+                    <textarea id="message" name="message" data-i18n-placeholder="contact.message.placeholder" placeholder="Tell us about your project or how we can help..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Send Message</button>
+                </div>
+            </form>
+        </section>
+
+        <div class="contact-info">
+            <h3 data-i18n="contact.alternative.title">Prefer to reach out directly?</h3>
+            <p data-i18n="contact.alternative.email">Email: <a href="mailto:hello@ailab.com">hello@ailab.com</a></p>
+            <p data-i18n="contact.alternative.phone">Phone: +1 (555) 123-4567</p>
+            <p data-i18n="contact.alternative.hours">Business Hours: Mon-Fri 9AM-6PM UTC</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <span class="footer-brand-icon">🦊</span>
+                    <span>Arvione AI</span>
+                </div>
+                <p data-i18n="about.mission">Making AI understand you better, making innovation simpler</p>
+                <a href="privacy.html" class="footer-privacy-link" data-i18n="footer.privacy">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Arvione AI. <span data-i18n="footer.copyright">Carefully crafted, making AI better</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // 多语言翻译数据
+        const contactTranslations = {
+            'zh-CN': {
+                'contact.page.title': '联系我们 - Arvione AI',
+                'contact.title': '联系我们',
+                'contact.subtitle': '准备好开启AI之旅了吗？联系我们的团队，发现我们如何帮助您的业务转型。',
+                'contact.firstName': '名字 *',
+                'contact.lastName': '姓氏 *',
+                'contact.email': '邮箱地址 *',
+                'contact.phone': '电话号码',
+                'contact.company': '公司',
+                'contact.jobTitle': '职位',
+                'contact.industry': '行业',
+                'contact.selectIndustry': '选择行业',
+                'contact.industry.tech': '科技',
+                'contact.industry.healthcare': '医疗保健',
+                'contact.industry.finance': '金融',
+                'contact.industry.education': '教育',
+                'contact.industry.retail': '零售',
+                'contact.industry.manufacturing': '制造业',
+                'contact.industry.other': '其他',
+                'contact.interest': '我感兴趣的是',
+                'contact.selectInterest': '选择兴趣',
+                'contact.interest.consultation': 'AI咨询',
+                'contact.interest.development': '定制AI开发',
+                'contact.interest.integration': 'AI集成服务',
+                'contact.interest.training': 'AI培训项目',
+                'contact.interest.partnership': '合作机会',
+                'contact.interest.demo': '产品演示',
+                'contact.interest.other': '其他',
+                'contact.message': '留言 *',
+                'contact.message.placeholder': '告诉我们您的项目或我们如何帮助您...',
+                'contact.submit': '发送消息',
+                'contact.success': '感谢您的留言！我们将在24小时内回复您。',
+                'contact.error': '发送消息时出错。请重试或直接联系我们。',
+                'contact.alternative.title': '更喜欢直接联系？',
+                'contact.alternative.email': '邮箱：hello@ailab.com',
+                'contact.alternative.phone': '电话：+1 (555) 123-4567',
+                'contact.alternative.hours': '营业时间：周一至周五上午9点至下午6点UTC'
+            },
+            'en': {
+                'contact.page.title': 'Contact Us - Arvione AI',
+                'contact.title': 'Contact Us',
+                'contact.subtitle': 'Ready to start your AI journey? Get in touch with our team and discover how we can help transform your business.',
+                'contact.firstName': 'First Name *',
+                'contact.lastName': 'Last Name *',
+                'contact.email': 'Email Address *',
+                'contact.phone': 'Phone Number',
+                'contact.company': 'Company',
+                'contact.jobTitle': 'Job Title',
+                'contact.industry': 'Industry',
+                'contact.selectIndustry': 'Select Industry',
+                'contact.industry.tech': 'Technology',
+                'contact.industry.healthcare': 'Healthcare',
+                'contact.industry.finance': 'Finance',
+                'contact.industry.education': 'Education',
+                'contact.industry.retail': 'Retail',
+                'contact.industry.manufacturing': 'Manufacturing',
+                'contact.industry.other': 'Other',
+                'contact.interest': 'I\'m interested in',
+                'contact.selectInterest': 'Select Interest',
+                'contact.interest.consultation': 'AI Consultation',
+                'contact.interest.development': 'Custom AI Development',
+                'contact.interest.integration': 'AI Integration Services',
+                'contact.interest.training': 'AI Training Programs',
+                'contact.interest.partnership': 'Partnership Opportunities',
+                'contact.interest.demo': 'Product Demo',
+                'contact.interest.other': 'Other',
+                'contact.message': 'Message *',
+                'contact.message.placeholder': 'Tell us about your project or how we can help...',
+                'contact.submit': 'Send Message',
+                'contact.success': 'Thank you for your message! We\'ll get back to you within 24 hours.',
+                'contact.error': 'There was an error sending your message. Please try again or contact us directly.',
+                'contact.alternative.title': 'Prefer to reach out directly?',
+                'contact.alternative.email': 'Email: hello@ailab.com',
+                'contact.alternative.phone': 'Phone: +1 (555) 123-4567',
+                'contact.alternative.hours': 'Business Hours: Mon-Fri 9AM-6PM UTC'
+            },
+            'ja': {
+                'contact.page.title': 'お問い合わせ - Arvione AI',
+                'contact.title': 'お問い合わせ',
+                'contact.subtitle': 'AIの旅を始めませんか？私たちのチームにお問い合わせください。ビジネスを変革する方法をご紹介します。',
+                'contact.firstName': '名 *',
+                'contact.lastName': '姓 *',
+                'contact.email': 'メールアドレス *',
+                'contact.phone': '電話番号',
+                'contact.company': '会社',
+                'contact.jobTitle': '役職',
+                'contact.industry': '業界',
+                'contact.selectIndustry': '業界を選択',
+                'contact.industry.tech': 'テクノロジー',
+                'contact.industry.healthcare': 'ヘルスケア',
+                'contact.industry.finance': '金融',
+                'contact.industry.education': '教育',
+                'contact.industry.retail': '小売',
+                'contact.industry.manufacturing': '製造業',
+                'contact.industry.other': 'その他',
+                'contact.interest': '興味のある分野',
+                'contact.selectInterest': '興味を選択',
+                'contact.interest.consultation': 'AIコンサルティング',
+                'contact.interest.development': 'カスタムAI開発',
+                'contact.interest.integration': 'AI統合サービス',
+                'contact.interest.training': 'AIトレーニングプログラム',
+                'contact.interest.partnership': 'パートナーシップ',
+                'contact.interest.demo': '製品デモ',
+                'contact.interest.other': 'その他',
+                'contact.message': 'メッセージ *',
+                'contact.message.placeholder': 'プロジェクトや私たちがどのようにお手伝いできるかについてお聞かせください...',
+                'contact.submit': 'メッセージを送信',
+                'contact.success': 'メッセージありがとうございます！24時間以内にご連絡いたします。',
+                'contact.error': 'メッセージ送信中にエラーが発生しました。もう一度お試しいただくか、直接お問い合わせください。',
+                'contact.alternative.title': '直接お問い合わせをご希望ですか？',
+                'contact.alternative.email': 'メール：hello@ailab.com',
+                'contact.alternative.phone': '電話：+1 (555) 123-4567',
+                'contact.alternative.hours': '営業時間：月曜日～金曜日午前9時～午後6時UTC'
+            }
+        };
+
+        // Update favicon
+        function updateFavicon(emoji) {
+            const favicon = document.getElementById('favicon');
+            // Use TextEncoder to handle Unicode characters properly
+            const encoder = new TextEncoder();
+            const data = encoder.encode(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><text y="24" font-size="24" font-family="Arial, sans-serif">${emoji}</text></svg>`);
+            const base64 = btoa(String.fromCharCode(...data));
+            favicon.href = `data:image/svg+xml;base64,${base64}`;
+        }
+
+        // 语言切换功能
+        let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+
+        function switchLanguage(lang) {
+            console.log('Contact page: switchLanguage called with lang:', lang);
+            console.log('Available languages in contactTranslations:', Object.keys(contactTranslations));
+
+            currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = lang;
+            console.log('HTML lang attribute set to:', lang);
+
+            // 更新页面标题
+            if (contactTranslations[lang] && contactTranslations[lang]['contact.page.title']) {
+                document.title = contactTranslations[lang]['contact.page.title'];
+                console.log('Page title updated to:', document.title);
+            } else {
+                console.error('Title translation not found for lang:', lang);
+            }
+
+            // 更新所有带有data-i18n或data-i18n-placeholder属性的元素
+            const elements = document.querySelectorAll('[data-i18n], [data-i18n-placeholder]');
+            console.log('Found', elements.length, 'elements with data-i18n or data-i18n-placeholder');
+
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const placeholderKey = element.getAttribute('data-i18n-placeholder');
+
+                console.log('Processing element:', element.tagName, element.id, 'key:', key, 'placeholderKey:', placeholderKey);
+
+                if (key && contactTranslations[lang] && contactTranslations[lang][key]) {
+                    const translation = contactTranslations[lang][key];
+                    console.log('Translating', key, 'to:', translation);
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else {
+                        element.innerHTML = translation;
+                    }
+                } else if (placeholderKey && contactTranslations[lang] && contactTranslations[lang][placeholderKey]) {
+                    const placeholderTranslation = contactTranslations[lang][placeholderKey];
+                    console.log('Translating placeholder', placeholderKey, 'to:', placeholderTranslation);
+                    element.placeholder = placeholderTranslation;
+                    console.log('Set placeholder to:', element.placeholder);
+                } else if (key) {
+                    console.warn('Translation not found for key:', key, 'in language:', lang);
+                } else if (placeholderKey) {
+                    console.warn('Translation not found for placeholder key:', placeholderKey, 'in language:', lang);
+                }
+            });
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            console.log('Language buttons updated');
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact page DOM loaded');
+            console.log('Current language from storage:', currentLang);
+            console.log('Contact translations object exists:', typeof contactTranslations);
+            console.log('Contact translations keys:', Object.keys(contactTranslations));
+
+            updateFavicon('🦊');
+            switchLanguage(currentLang);
+
+            // 添加语言按钮事件监听器
+            const langButtons = document.querySelectorAll('.lang-btn');
+            console.log('Found', langButtons.length, 'language buttons');
+
+            langButtons.forEach(btn => {
+                console.log('Adding click listener to button with data-lang:', btn.getAttribute('data-lang'));
+                btn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    console.log('Language button clicked, lang:', lang, 'event type:', event.type);
+                    console.log('Button element:', this);
+                    switchLanguage(lang);
+                });
+                console.log('Click listener added to button:', btn.getAttribute('data-lang'));
+            });
+
+            // 测试翻译数据
+            console.log('Sample translations:');
+            console.log('EN title:', contactTranslations['en']?.['contact.title']);
+            console.log('JA title:', contactTranslations['ja']?.['contact.title']);
+            console.log('ZH title:', contactTranslations['zh-CN']?.['contact.title']);
+        });
+
+        // 表单提交处理
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // 显示加载状态
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = contactTranslations[currentLang]['contact.submit.loading'] || 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                // 发送数据到后台（这里使用示例API，你需要替换为实际的后端API）
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // 成功
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    this.reset();
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                // 失败
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+            } finally {
+                // 恢复按钮状态
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
